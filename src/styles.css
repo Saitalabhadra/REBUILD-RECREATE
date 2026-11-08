@@ -1,0 +1,291 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  CampusCode design tokens.
+  everything colour related comes from here, festival themes just swap the
+  --cc-* vars using [data-theme] on <html>. shadcn vars point at them.
+*/
+
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--cc-ink);
+  --color-paper: var(--cc-paper);
+  --color-lime: var(--cc-lime);
+  --color-lime-foreground: var(--cc-lime-fg);
+  --color-violet: var(--cc-violet);
+  --color-festive: var(--cc-festive);
+}
+
+:root {
+  --radius: 0.9rem;
+
+  /* brand base (default CampusCode) */
+  --cc-paper: oklch(0.973 0.005 106); /* #f7f7f4 */
+  --cc-ink: oklch(0.178 0 0); /* #111111 */
+  --cc-violet: oklch(0.6 0.22 283); /* #7665ff */
+  --cc-lime: oklch(0.85 0.2 128); /* #a8e62e */
+  --cc-lime-fg: oklch(0.178 0 0);
+  --cc-festive: var(--cc-violet);
+  --cc-card: oklch(1 0 0);
+  --cc-line: oklch(0.9 0.006 106);
+  --cc-soft: oklch(0.94 0.008 106);
+  --cc-muted: oklch(0.48 0.01 106);
+  --cc-pattern: none;
+
+  --background: var(--cc-paper);
+  --foreground: var(--cc-ink);
+  --card: var(--cc-card);
+  --card-foreground: var(--cc-ink);
+  --popover: var(--cc-card);
+  --popover-foreground: var(--cc-ink);
+  --primary: var(--cc-violet);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: var(--cc-soft);
+  --secondary-foreground: var(--cc-ink);
+  --muted: var(--cc-soft);
+  --muted-foreground: var(--cc-muted);
+  --accent: var(--cc-lime);
+  --accent-foreground: var(--cc-lime-fg);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: var(--cc-line);
+  --input: var(--cc-line);
+  --ring: var(--cc-violet);
+
+  --shadow-card: 0 1px 2px oklch(0 0 0 / 4%), 0 16px 40px -24px oklch(0 0 0 / 22%);
+  --shadow-lift: 0 2px 0 oklch(0 0 0 / 4%), 0 28px 56px -22px color-mix(in oklab, var(--cc-violet) 50%, transparent);
+  --shadow-btn: inset 0 1px 0 oklch(1 0 0 / 22%), 0 10px 24px -12px color-mix(in oklab, var(--cc-violet) 60%, transparent);
+  --gradient-primary: linear-gradient(135deg, var(--cc-violet), color-mix(in oklab, var(--cc-violet) 72%, var(--cc-lime)));
+}
+
+/* ---- festival themes ---- */
+[data-theme="wedding"] {
+  --cc-paper: oklch(0.96 0.02 80);
+  --cc-ink: oklch(0.22 0.05 20);
+  --cc-violet: oklch(0.45 0.16 15); /* maroon */
+  --cc-lime: oklch(0.8 0.14 85); /* gold */
+  --cc-festive: oklch(0.55 0.15 150);
+  --cc-card: oklch(0.985 0.012 85);
+  --cc-line: oklch(0.88 0.03 70);
+  --cc-soft: oklch(0.93 0.03 80);
+  --cc-muted: oklch(0.45 0.05 30);
+}
+[data-theme="diwali"] {
+  /* kept it light on purpose, rules say no dark theme that hides content */
+  --cc-paper: oklch(0.97 0.025 75);
+  --cc-violet: oklch(0.6 0.19 40); /* diya flame */
+  --cc-lime: oklch(0.84 0.16 85); /* marigold */
+  --cc-festive: oklch(0.5 0.2 330);
+  --cc-card: oklch(0.99 0.01 80);
+  --cc-line: oklch(0.89 0.04 70);
+  --cc-soft: oklch(0.94 0.04 75);
+  --cc-muted: oklch(0.47 0.04 50);
+}
+[data-theme="holi"] {
+  --cc-paper: oklch(0.98 0.01 340);
+  --cc-violet: oklch(0.6 0.24 350); /* gulal pink */
+  --cc-lime: oklch(0.85 0.18 95);
+  --cc-festive: oklch(0.65 0.18 230);
+  --cc-line: oklch(0.91 0.03 340);
+  --cc-soft: oklch(0.95 0.025 340);
+}
+[data-theme="sankranti"] {
+  --cc-paper: oklch(0.97 0.025 90);
+  --cc-violet: oklch(0.62 0.17 45); /* kite orange */
+  --cc-lime: oklch(0.82 0.15 95);
+  --cc-festive: oklch(0.6 0.15 240);
+  --cc-line: oklch(0.89 0.04 85);
+  --cc-soft: oklch(0.94 0.04 90);
+}
+[data-theme="ugadi"] {
+  --cc-paper: oklch(0.97 0.02 130);
+  --cc-violet: oklch(0.5 0.13 150); /* mango leaf */
+  --cc-lime: oklch(0.83 0.16 90);
+  --cc-festive: oklch(0.65 0.18 40);
+  --cc-line: oklch(0.89 0.03 130);
+  --cc-soft: oklch(0.94 0.03 130);
+}
+[data-theme="independence"] {
+  --cc-paper: oklch(0.985 0.004 240);
+  --cc-violet: oklch(0.36 0.15 265); /* chakra navy */
+  --cc-lime: oklch(0.74 0.17 55); /* saffron */
+  --cc-festive: oklch(0.55 0.15 150);
+  --cc-line: oklch(0.9 0.01 240);
+  --cc-soft: oklch(0.95 0.01 240);
+}
+[data-theme="christmas"] {
+  --cc-paper: oklch(0.97 0.008 150);
+  --cc-violet: oklch(0.5 0.19 25); /* red */
+  --cc-lime: oklch(0.6 0.13 155); /* pine */
+  --cc-lime-fg: oklch(0.99 0 0);
+  --cc-festive: oklch(0.8 0.13 85);
+  --cc-line: oklch(0.9 0.015 150);
+  --cc-soft: oklch(0.94 0.015 150);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.6s ease, color 0.6s ease;
+  }
+  ::selection {
+    background: var(--cc-lime);
+    color: var(--cc-lime-fg);
+  }
+}
+
+/* small helpers I kept reusing */
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+@utility cc-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s, background-color 0.6s, border-color 0.6s;
+}
+
+@utility cc-lift {
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility press {
+  transition: transform 0.15s ease, background-color 0.3s, color 0.3s;
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* premium touches: gradient brand button, soft hero glow, gradient headline text.
+   all built from --cc-* tokens so festival themes recolour them automatically */
+@utility btn-primary {
+  background: var(--gradient-primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-btn);
+  &:hover {
+    filter: brightness(1.08);
+  }
+}
+
+@utility hero-glow {
+  background:
+    radial-gradient(640px 320px at 82% 18%, color-mix(in oklab, var(--cc-violet) 14%, transparent), transparent 70%),
+    radial-gradient(520px 280px at 12% 88%, color-mix(in oklab, var(--cc-lime) 18%, transparent), transparent 70%);
+}
+
+@utility text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility rangoli-dots {
+  background-image: radial-gradient(color-mix(in oklab, var(--cc-violet) 35%, transparent) 1.2px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-12px) rotate(var(--r, 0deg)); }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes spark {
+  0% { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.2); }
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(0.9); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+@utility anim-rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@utility anim-float {
+  animation: floaty 6s ease-in-out infinite;
+}
+@utility anim-marquee {
+  animation: marquee 30s linear infinite;
+}
+@utility anim-flicker {
+  animation: flicker 1.4s ease-in-out infinite;
+  transform-origin: bottom;
+}
+@utility anim-shake {
+  animation: shake 0.3s ease 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
